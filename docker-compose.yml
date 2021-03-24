@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${pg_user}
+      - POSTGRES_PASSWORD=${pg_passwd}
+      - POSTGRES_DB=${pg_db}
+    volumes:
+      - ./docker_postgres.sh:/docker-entrypoint-initdb.d/docker_postgres.sh
+
+  nextcloud:
+    image: nextcloud:latest
+    restart: always
+    ports:
+      - 10001:80
+    volumes:
+      - nextcloud:/var/www/html
+    environment:
+      - POSTGRES_HOST=${nc_pg_host}
+      - POSTGRES_USER=${nc_pg_user}
+      - POSTGRES_PASSWORD=${nc_pg_passwd}
+      - POSTGRES_DB=${nc_pg_db}
+      - NEXTCLOUD_ADMIN_USER=${nc_admin_name}
+      - NEXTCLOUD_ADMIN_PASSWORD=${nc_admin_passwd}
+    depends_on:
+      - db
+
+  miniflux:
+    image: miniflux/miniflux:latest
+    ports:
+      - 10002:8080
+    depends_on:
+      - db
+      - nextcloud
+      - bitwarden
+    environment:
+      - DATABASE_URL=postgres://${mf_pg_user}:${mf_pg_passwd}@${mf_pg_host}/${mf_pg_db}?sslmode=disable
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - ADMIN_USERNAME=${mf_admin_name}
+      - ADMIN_PASSWORD=${mf_admin_passwd}
+
+  bitwarden:
+    image: bitwardenrs/server:latest
+    depends_on:
+      - db
+      - nextcloud
+    restart: always
+    volumes:
+      - ./bw-data:/data
+    ports:
+      - 10003:80
+    environment:
+      - LOG_FILE=/data/bitwarden.log
+      - DATABASE_URL=postgresql://${bw_pg_user}:${bw_pg_passwd}@${bw_pg_host}/${bw_pg_db}
+      - ADMIN_TOKEN=${bw_admin_token}
+
+volumes:
+    nextcloud:
