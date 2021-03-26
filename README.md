@@ -2,7 +2,7 @@
 
 Put these variables in your .env file:
 
-```
+```plaintext
 pg_user=postgres
 pg_passwd=passwd
 pg_db=postgres
