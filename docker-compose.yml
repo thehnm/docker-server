@@ -37,7 +37,7 @@ services:
     depends_on:
       - db
       - nextcloud
-      - bitwarden
+      - vaultwarden
     environment:
       - DATABASE_URL=postgres://${mf_pg_user}:${mf_pg_passwd}@${mf_pg_host}/${mf_pg_db}?sslmode=disable
       - RUN_MIGRATIONS=1
@@ -45,20 +45,20 @@ services:
       - ADMIN_USERNAME=${mf_admin_name}
       - ADMIN_PASSWORD=${mf_admin_passwd}
 
-  bitwarden:
-    image: bitwardenrs/server:latest
+  vaultwarden:
+    image: vaultwarden/server:latest
     depends_on:
       - db
       - nextcloud
     restart: always
     volumes:
-      - ./bw-data:/data
+      - ./data:/data
     ports:
       - 10003:80
     environment:
-      - LOG_FILE=/data/bitwarden.log
-      - DATABASE_URL=postgresql://${bw_pg_user}:${bw_pg_passwd}@${bw_pg_host}/${bw_pg_db}
-      - ADMIN_TOKEN=${bw_admin_token}
+      - LOG_FILE=/data/vaultwarden.log
+      - DATABASE_URL=postgresql://${vw_pg_user}:${vw_pg_passwd}@${vw_pg_host}/${vw_pg_db}
+      - ADMIN_TOKEN=${vw_admin_token}
 
 volumes:
     nextcloud:

@@ -21,12 +21,12 @@ mf_pg_db=minifluxdb
 mf_admin_name=admin
 mf_admin_passwd=passwd
 
-bw_pg_host=db
-bw_pg_user=bitwarden
-bw_pg_passwd=passwd
-bw_pg_db=bitwardendb
-bw_admin_token=passwd
+vw_pg_host=db
+vw_pg_user=vaultwarden
+vw_pg_passwd=passwd
+vw_pg_db=vaultwardendb
+vw_admin_token=passwd
 ```
 
-Obviously, change the password in every variable ending with 'passwd'.
-You also can change the value of the other variables.
+Obviously, change the password for every variable ending with 'passwd'.
+You can also change the settings for other variables.

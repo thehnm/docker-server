@@ -15,4 +15,4 @@ setup_db() {
 setup_db "$nc_pg_user" "$nc_pg_db" "$nc_pg_passwd"
 setup_db "$mf_pg_user" "$mf_pg_db" "$mf_pg_passwd"
 psql minifluxdb -c "CREATE EXTENSION hstore"
-setup_db "$bw_pg_user" "$bw_pg_db" "$bw_pg_passwd"
+setup_db "$vw_pg_user" "$vw_pg_db" "$vw_pg_passwd"
