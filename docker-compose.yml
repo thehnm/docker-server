@@ -52,7 +52,7 @@ services:
       - nextcloud
     restart: always
     volumes:
-      - ./data:/data
+      - vwdata:/data
     ports:
       - 10003:80
     environment:
@@ -62,3 +62,4 @@ services:
 
 volumes:
     nextcloud:
+    vwdata:
