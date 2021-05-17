@@ -40,8 +40,6 @@ services:
       - 10002:8080
     depends_on:
       - db
-      - nextcloud
-      - vaultwarden
     environment:
       - DATABASE_URL=postgres://${mf_pg_user}:${mf_pg_passwd}@${mf_pg_host}/${mf_pg_db}?sslmode=disable
       - RUN_MIGRATIONS=1
@@ -54,7 +52,6 @@ services:
     container_name: vaultwarden
     depends_on:
       - db
-      - nextcloud
     restart: always
     volumes:
       - vwdata:/data
