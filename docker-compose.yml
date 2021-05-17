@@ -12,6 +12,7 @@ services:
       - POSTGRES_DB=${pg_db}
     volumes:
       - ./docker_postgres.sh:/docker-entrypoint-initdb.d/docker_postgres.sh
+      - dbdata:/var/lib/postgresql/data/
 
   nextcloud:
     image: nextcloud:latest
@@ -63,3 +64,4 @@ services:
 volumes:
     nextcloud:
     vwdata:
+    dbdata:
