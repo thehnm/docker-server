@@ -31,7 +31,6 @@ gt_pg_host=db
 gt_pg_user=gitea
 gt_pg_passwd=passwd
 gt_pg_db=giteadb
-gt_admin_token=passwd
 ```
 
 Obviously, change the password for every variable ending with 'passwd'.
