@@ -3,6 +3,7 @@ version: "3"
 services:
   db:
     image: postgres:latest
+    container_name: db
     restart: always
     env_file:
       - ./.env
@@ -16,6 +17,7 @@ services:
 
   nextcloud:
     image: nextcloud:latest
+    container_name: nextcloud
     restart: always
     ports:
       - 10001:80
@@ -33,6 +35,7 @@ services:
 
   miniflux:
     image: miniflux/miniflux:latest
+    container_name: miniflux
     ports:
       - 10002:8080
     depends_on:
@@ -48,6 +51,7 @@ services:
 
   vaultwarden:
     image: vaultwarden/server:latest
+    container_name: vaultwarden
     depends_on:
       - db
       - nextcloud
@@ -63,6 +67,7 @@ services:
 
   gitea:
     image: gitea/gitea:latest
+    container_name: gitea
     environment:
       - USER_UID=1000
       - USER_GID=1000
