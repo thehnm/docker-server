@@ -26,6 +26,12 @@ vw_pg_user=vaultwarden
 vw_pg_passwd=passwd
 vw_pg_db=vaultwardendb
 vw_admin_token=passwd
+
+gt_pg_host=db
+gt_pg_user=gitea
+gt_pg_passwd=passwd
+gt_pg_db=giteadb
+gt_admin_token=passwd
 ```
 
 Obviously, change the password for every variable ending with 'passwd'.
