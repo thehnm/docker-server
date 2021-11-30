@@ -62,30 +62,7 @@ services:
       - DATABASE_URL=postgresql://${vw_pg_user}:${vw_pg_passwd}@${vw_pg_host}/${vw_pg_db}
       - ADMIN_TOKEN=${vw_admin_token}
 
-  gitea:
-    image: gitea/gitea:latest
-    container_name: gitea
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
-      - GITEA__database__DB_TYPE=postgres
-      - GITEA__database__HOST=${gt_pg_host}
-      - GITEA__database__NAME=${gt_pg_db}
-      - GITEA__database__USER=${gt_pg_user}
-      - GITEA__database__PASSWD=${gt_pg_passwd}
-    restart: always
-    volumes:
-      - gitea:/data
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "10004:3000"
-      - "10005:22"
-    depends_on:
-       - db
-
 volumes:
     nextcloud:
     vwdata:
     dbdata:
-    gitea:
