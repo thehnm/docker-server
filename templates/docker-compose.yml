@@ -12,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=${pg_passwd}
       - POSTGRES_DB=${pg_db}
     volumes:
-      - ./docker_postgres.sh:/docker-entrypoint-initdb.d/docker_postgres.sh
+      - ./docker-postgres.sh:/docker-entrypoint-initdb.d/docker-postgres.sh
       - dbdata:/var/lib/postgresql/data/
 
   nextcloud:
