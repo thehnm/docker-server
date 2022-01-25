@@ -1,9 +1,9 @@
 # Docker Compose File for my Server setup
 
-Execute the script to generate a .env file containing your passwords:
+Execute the script to generate a template and environment file:
 
 ```shell
-./setup_env.sh
+./setup.sh
 ```
 
 Change the password for every variable ending with 'passwd'.

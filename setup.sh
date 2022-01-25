@@ -27,3 +27,7 @@ vw_admin_token=passwd
 EOF
 
 chmod 600 .env
+
+cp templates/docker-compose.yml .
+chmod 600 docker-compose.yml
+cp templates/docker-postgres.sh .
